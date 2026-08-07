@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matěj — tvůrčí manuál & sprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#12100E;
+  --paper:#EDE8E0;
+  --card:#FFFFFF;
+  --line:#CFC7BB;
+  --muted:#6B655C;
+  --shout:#0033FF;
+  --heat:#FF3B00;
+  --ok:#0B7A45;
+  --r:4px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,sans-serif;
+  font-size:15px;
+  line-height:1.5;
+  padding:0 0 120px;
+}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* HERO */
+header{
+  border-bottom:2px solid var(--ink);
+  padding:56px 0 28px;
+  margin-bottom:40px;
+  position:relative;
+  overflow:hidden;
+}
+.eyebrow{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:14px;
+}
+h1{
+  font-family:"Bebas Neue",sans-serif;
+  font-size:clamp(52px,10vw,124px);
+  line-height:.86;
+  letter-spacing:.01em;
+}
+h1 .b{color:var(--shout)}
+.sub{
+  margin-top:18px;max-width:52ch;color:var(--muted);font-size:15px;
+}
+.timer{
+  font-family:"IBM Plex Mono",monospace;
+  font-size:12px;margin-top:22px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+}
+.timer input{
+  font:inherit;border:1px solid var(--line);background:var(--card);
+  padding:5px 8px;border-radius:var(--r);color:var(--ink);
+}
+.pill{
+  background:var(--ink);color:var(--paper);padding:5px 10px;border-radius:100px;
+  letter-spacing:.06em;
+}
+.pill.hot{background:var(--heat)}
+
+/* NAV */
+nav{
+  position:sticky;top:0;z-index:50;background:var(--paper);
+  border-bottom:1px solid var(--line);
+  padding:10px 0;margin-bottom:36px;
+}
+nav .wrap{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+nav a{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;text-decoration:none;color:var(--muted);
+  padding:6px 10px;border:1px solid transparent;border-radius:100px;
+}
+nav a:hover,nav a:focus{color:var(--ink);border-color:var(--line);background:var(--card)}
+.spacer{flex:1}
+button.act{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;cursor:pointer;
+  background:var(--ink);color:var(--paper);border:0;
+  padding:7px 12px;border-radius:100px;
+}
+button.act.ghost{background:transparent;color:var(--muted);border:1px solid var(--line)}
+button.act:hover{opacity:.85}
+
+/* SECTIONS */
+section{margin-bottom:56px;scroll-margin-top:70px}
+.shead{
+  display:flex;align-items:baseline;gap:14px;
+  border-bottom:1px solid var(--ink);padding-bottom:8px;margin-bottom:22px;
+}
+.shead h2{
+  font-family:"Bebas Neue",sans-serif;font-size:34px;letter-spacing:.02em;font-weight:400;
+}
+.shead .note{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted);margin-left:auto}
+
+/* PILÍŘE */
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.pillar{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:16px;border-top:4px solid var(--ink);
+}
+.pillar.p1{border-top-color:var(--shout)}
+.pillar.p2{border-top-color:var(--heat)}
+.pillar.p3{border-top-color:var(--ok)}
+.pillar.p4{border-top-color:var(--ink)}
+.pillar h3{font-size:16px;margin-bottom:4px}
+.pillar p{font-size:13px;color:var(--muted)}
+.pillar .tag{
+  font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--shout);display:block;margin-bottom:8px;
+}
+.pillar.p2 .tag{color:var(--heat)}.pillar.p3 .tag{color:var(--ok)}.pillar.p4 .tag{color:var(--muted)}
+
+/* PRAVIDLA */
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ratio{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;
+}
+.bar{display:flex;height:32px;border-radius:var(--r);overflow:hidden;margin:12px 0 8px;border:1px solid var(--ink)}
+.bar .ev{width:70%;background:var(--shout)}
+.bar .tr{width:30%;background:var(--heat)}
+.barlab{display:flex;justify-content:space-between;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted)}
+.struct{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.step{display:flex;gap:12px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.step:last-child{border:0}
+.step .t{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--heat);min-width:52px}
+.step b{font-size:14px}
+.step span{font-size:13px;color:var(--muted);display:block}
+
+/* WORKFLOW */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--ink);border-radius:var(--r);overflow:hidden}
+.fx{background:var(--card);padding:18px 16px;border-right:1px solid var(--line);position:relative}
+.fx:last-child{border-right:0}
+.fx .n{font-family:"Bebas Neue",sans-serif;font-size:40px;line-height:1;color:var(--line)}
+.fx b{display:block;margin-top:4px;font-size:14px}
+.fx p{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+/* SPRINT BOARD */
+.board{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.slot{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px;
+  display:flex;flex-direction:column;gap:8px;
+}
+.slot.disc{border:1px solid var(--heat);box-shadow:inset 0 0 0 3px rgba(255,59,0,.08)}
+.slot .top{display:flex;align-items:center;gap:8px}
+.slot .idx{font-family:"Bebas Neue",sans-serif;font-size:22px;color:var(--muted)}
+.chip{
+  font-family:"IBM Plex Mono",monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid var(--line);padding:3px 7px;border-radius:100px;color:var(--muted);
+}
+.chip.hot{background:var(--heat);color:#fff;border-color:var(--heat)}
+select,textarea,input[type=text]{
+  font-family:inherit;font-size:13.5px;width:100%;
+  border:1px solid var(--line);border-radius:var(--r);background:var(--paper);
+  padding:8px 9px;color:var(--ink);resize:vertical;
+}
+select:focus,textarea:focus,input:focus{outline:2px solid var(--shout);outline-offset:1px;border-color:var(--shout)}
+label.mini{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.done{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted);margin-top:2px}
+.done input{width:16px;height:16px;accent-color:var(--ok)}
+.slot.finished{opacity:.62}
+.slot.finished .top .idx{color:var(--ok)}
+
+/* CHECKIN */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.panel h3{font-family:"Bebas Neue",sans-serif;font-size:24px;font-weight:400;letter-spacing:.02em}
+.panel .k{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--heat);margin-bottom:6px}
+.panel .k.blue{color:var(--shout)}
+.panel ul{margin:10px 0 12px 16px;font-size:13px;color:var(--muted)}
+.panel li{margin-bottom:3px}
+
+/* PROMPT */
+.prompt{
+  background:var(--ink);color:var(--paper);border-radius:var(--r);padding:20px;
+}
+.prompt label.mini{color:#8f877c}
+.prompt textarea{
+  background:#1d1a17;border-color:#332e29;color:var(--paper);min-height:88px;margin-top:8px;
+  font-family:"IBM Plex Mono",monospace;font-size:13px;
+}
+.prompt .row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.prompt button{background:var(--shout);color:#fff}
+.prompt button.ghost{background:transparent;border:1px solid #453f38;color:#8f877c}
+
+.saved{
+  position:fixed;bottom:22px;right:22px;background:var(--ok);color:#fff;
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  padding:9px 14px;border-radius:100px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:99;
+}
+.saved.on{opacity:1}
+
+footer{border-top:1px solid var(--line);padding-top:16px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--muted)}
+
+@media(max-width:820px){
+  .rules,.two{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){.flow{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Tvůrčí manuál · short-form video</div>
+    <h1>MATĚJ<br><span class="b">TOČÍ.</span></h1>
+    <p class="sub">Místo, kde se ujasní směr a jde se točit. Otevři, vyplň, natoč. Všechno, co sem napíšeš, se ukládá v tomhle prohlížeči.</p>
+    <div class="timer">
+      <span class="pill" id="dayPill">Sprint · den 1/14</span>
+      <span class="pill hot" id="hotPill">Do check-inu 14 dní</span>
+      <label class="mini" for="startDate">Start sprintu</label>
+      <input type="date" id="startDate">
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="wrap">
+    <a href="#identita">Identita</a>
+    <a href="#format">Formát</a>
+    <a href="#workflow">Workflow</a>
+    <a href="#sprint">Sprint</a>
+    <a href="#cykly">Cykly</a>
+    <a href="#prompt">Prompt</a>
+    <span class="spacer"></span>
+    <button class="act ghost" onclick="window.print()">Tisk / PDF</button>
+    <button class="act ghost" id="resetBtn">Reset</button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+<section id="identita">
+  <div class="shead"><h2>1 · Identita a pilíře</h2><span class="note">Každý nápad patří do jednoho z nich</span></div>
+  <div class="pillars">
+    <div class="pillar p1"><span class="tag">Hlavní fokus</span><h3>Edukace</h3><p>Předávání know-how, učení publika. Jedno video = jedna věc, kterou se divák naučí.</p></div>
+    <div class="pillar p2"><span class="tag">Pilíř 02</span><h3>Kreativita & Skills</h3><p>Ukázka dovedností, proces tvorby, jak se učím nové věci.</p></div>
+    <div class="pillar p3"><span class="tag">Pilíř 03</span><h3>Business / Prodej</h3><p>Budování osobní značky, sebevědomé ukázání expertízy.</p></div>
+    <div class="pillar p4"><span class="tag">Pilíř 04</span><h3>Člověk / Osobnost</h3><p>Autenticita, zákulisí, myšlenky bez filtru.</p></div>
+  </div>
+</section>
+
+<section id="format">
+  <div class="shead"><h2>2 · Pravidla formátu</h2><span class="note">Reels / TikTok / Shorts</span></div>
+  <div class="rules">
+    <div class="ratio">
+      <label class="mini">Poměr obsahu</label>
+      <div class="bar"><div class="ev"></div><div class="tr"></div></div>
+      <div class="barlab"><span>70 % Evergreen — stálá hodnota</span><span>30 % Trendy</span></div>
+      <p style="font-size:13px;color:var(--muted);margin-top:12px">Trendjacking, aktuální hudba a formáty jdou do té třetiny. Zbytek musí obstát i za rok.</p>
+    </div>
+    <div class="struct">
+      <label class="mini">Struktura každého videa</label>
+      <div class="step"><span class="t">0–3 s</span><div><b>Hook</b><span>Okamžitě chytit pozornost: problém, otázka, silný vizuál.</span></div></div>
+      <div class="step"><span class="t">průběh</span><div><b>Retence</b><span>Rychlé tempo. Změna obrazu nebo textu každé 2–3 vteřiny.</span></div></div>
+      <div class="step"><span class="t">konec</span><div><b>CTA</b><span>Jasný pokyn: sleduj, komentuj, klikni.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="workflow">
+  <div class="shead"><h2>3 · Workflow „Mates video“</h2><span class="note">Postup, kterého se držíme</span></div>
+  <div class="flow">
+    <div class="fx"><div class="n">01</div><b>Z hlavy na papír</b><p>Záchyt myšlenky. Bez cenzury.</p></div>
+    <div class="fx"><div class="n">02</div><b>Jasný cíl</b><p>Co si má divák odnést.</p></div>
+    <div class="fx"><div class="n">03</div><b>Video scénář</b><p>Pevná osnova.</p></div>
+    <div class="fx"><div class="n">04</div><b>Akce</b><p>Natáčení — komfortní i nekomfortní zóna.</p></div>
+  </div>
+</section>
+
+<section id="sprint">
+  <div class="shead"><h2>4 · Sprint — 14 dní</h2><span class="note" id="progress">0/4 hotovo</span></div>
+  <div class="board" id="board"></div>
+  <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+    <button class="act" id="addSlot">+ Přidat video</button>
+    <button class="act ghost" id="newSprint">Nový sprint (archivovat)</button>
+  </div>
+</section>
+
+<section id="cykly">
+  <div class="shead"><h2>5 · Kontrolní cykly</h2><span class="note">Hybridní model</span></div>
+  <div class="two">
+    <div class="panel">
+      <div class="k">Každých 14 dní</div>
+      <h3>Check-in</h3>
+      <ul>
+        <li>Zhodnocení plnění sprintu.</li>
+        <li><b>Povinně:</b> jeden úkol = výstup z komfortní zóny (nekomfortní téma, natáčení na veřejnosti, nový formát).</li>
+      </ul>
+      <label class="mini" for="ci">Poznámky z check-inu</label>
+      <textarea id="ci" rows="4" placeholder="Co vyšlo, co ne, co jsem si nedovolil…"></textarea>
+    </div>
+    <div class="panel">
+      <div class="k blue">Každých 30 dní</div>
+      <h3>Deep-dive analýza</h3>
+      <ul>
+        <li>Mentoringový call nad analytikou.</li>
+        <li>Dosahy · retence · emoce při tvorbě.</li>
+        <li>Nastavení plánu na další měsíc.</li>
+      </ul>
+      <label class="mini" for="dd">Závěry a plán na měsíc</label>
+      <textarea id="dd" rows="4" placeholder="Čísla, vzorce, rozhodnutí…"></textarea>
+    </div>
+  </div>
+</section>
+
+<section id="prompt">
+  <div class="shead"><h2>6 · Zadání pro tenhle měsíc</h2><span class="note">Zkopíruj do AI i s manuálem</span></div>
+  <div class="prompt">
+    <label class="mini" for="req">Tento měsíc potřebuji</label>
+    <textarea id="req" placeholder="Např.: Vymysli mi 4 konkrétní scénáře na Reels pro prvních 14 dní, z toho jedno musí být těžký výstup z komfortní zóny."></textarea>
+    <div class="row">
+      <button class="act" id="copyBtn">Zkopírovat celý prompt</button>
+      <button class="act ghost" id="exportBtn">Stáhnout jako .txt</button>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap" style="padding-left:0;padding-right:0">
+  Ukládá se automaticky do tohoto prohlížeče · <span id="stamp">—</span>
+</footer>
+</div>
+
+<div class="saved" id="saved">Uloženo</div>
+
+<script>
+const KEY='matej_manual_v1';
+const PILLARS=['Edukace','Kreativita & Skills','Business / Prodej','Člověk / Osobnost'];
+const TYPES=['Evergreen','Trend'];
+
+let state=load();
+
+function load(){
+  try{const r=localStorage.getItem(KEY);if(r)return JSON.parse(r);}catch(e){}
+  return {startDate:new Date().toISOString().slice(0,10),ci:'',dd:'',req:'',slots:defaultSlots()};
+}
+function defaultSlots(){
+  return [0,1,2,3].map(i=>({pillar:PILLARS[0],type:TYPES[0],idea:'',goal:'',hook:'',cta:'',disc:i===3,done:false}));
+}
+function save(){
+  try{localStorage.setItem(KEY,JSON.stringify(state));toast();}catch(e){}
+  document.getElementById('stamp').textContent='naposledy '+new Date().toLocaleString('cs-CZ');
+}
+let tm;
+function toast(){const s=document.getElementById('saved');s.classList.add('on');clearTimeout(tm);tm=setTimeout(()=>s.classList.remove('on'),1100);}
+
+function render(){
+  const b=document.getElementById('board');b.innerHTML='';
+  state.slots.forEach((s,i)=>{
+    const el=document.createElement('div');
+    el.className='slot'+(s.disc?' disc':'')+(s.done?' finished':'');
+    el.innerHTML=`
+      <div class="top">
+        <span class="idx">${String(i+1).padStart(2,'0')}</span>
+        ${s.disc?'<span class="chip hot">Nekomfortní zóna</span>':'<span class="chip">Video</span>'}
+        <button class="act ghost" style="margin-left:auto;padding:3px 8px" data-del="${i}">×</button>
+      </div>
+      <div><label class="mini">Pilíř</label>
+        <select data-f="pillar" data-i="${i}">${PILLARS.map(p=>`<option ${p===s.pillar?'selected':''}>${p}</option>`).join('')}</select></div>
+      <div><label class="mini">Typ</label>
+        <select data-f="type" data-i="${i}">${TYPES.map(p=>`<option ${p===s.type?'selected':''}>${p}</option>`).join('')}</select></div>
+      <div><label class="mini">01 · Myšlenka</label>
+        <textarea rows="2" data-f="idea" data-i="${i}" placeholder="Z hlavy na papír…">${esc(s.idea)}</textarea></div>
+      <div><label class="mini">02 · Co si divák odnese</label>
+        <textarea rows="2" data-f="goal" data-i="${i}" placeholder="Jeden jasný cíl">${esc(s.goal)}</textarea></div>
+      <div><label class="mini">03 · Hook (0–3 s)</label>
+        <input type="text" data-f="hook" data-i="${i}" value="${esc(s.hook)}" placeholder="První věta / vizuál"></div>
+      <div><label class="mini">CTA</label>
+        <input type="text" data-f="cta" data-i="${i}" value="${esc(s.cta)}" placeholder="Sleduj / komentuj / klikni"></div>
+      <label class="done"><input type="checkbox" data-f="disc" data-i="${i}" ${s.disc?'checked':''}> Výstup z komfortní zóny</label>
+      <label class="done"><input type="checkbox" data-f="done" data-i="${i}" ${s.done?'checked':''}> 04 · Natočeno</label>
+    `;
+    b.appendChild(el);
+  });
+  const d=state.slots.filter(s=>s.done).length;
+  const hasDisc=state.slots.some(s=>s.disc);
+  document.getElementById('progress').textContent=`${d}/${state.slots.length} hotovo${hasDisc?'':' · chybí nekomfortní úkol!'}`;
+  document.getElementById('progress').style.color=hasDisc?'':'var(--heat)';
+  updateDays();
+}
+function esc(t){return (t||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+
+document.getElementById('board').addEventListener('input',e=>{
+  const i=e.target.dataset.i,f=e.target.dataset.f;
+  if(i===undefined||!f)return;
+  state.slots[i][f]=e.target.type==='checkbox'?e.target.checked:e.target.value;
+  save();
+  if(f==='disc'||f==='done')render();
+  else{
+    const d=state.slots.filter(s=>s.done).length;
+    document.getElementById('progress').textContent=`${d}/${state.slots.length} hotovo`;
+  }
+});
+document.getElementById('board').addEventListener('click',e=>{
+  const i=e.target.dataset.del;
+  if(i!==undefined){state.slots.splice(i,1);save();render();}
+});
+document.getElementById('addSlot').onclick=()=>{
+  state.slots.push({pillar:PILLARS[0],type:TYPES[0],idea:'',goal:'',hook:'',cta:'',disc:false,done:false});
+  save();render();
+};
+document.getElementById('newSprint').onclick=()=>{
+  if(!confirm('Založit nový sprint? Aktuální obsah se smaže — stáhni si ho nejdřív jako .txt.'))return;
+  state.slots=defaultSlots();
+  state.startDate=new Date().toISOString().slice(0,10);
+  state.ci='';document.getElementById('ci').value='';
+  save();render();syncFields();
+};
+document.getElementById('resetBtn').onclick=()=>{
+  if(!confirm('Vymazat úplně všechno?'))return;
+  localStorage.removeItem(KEY);location.reload();
+};
+
+['ci','dd','req'].forEach(id=>{
+  document.getElementById(id).addEventListener('input',e=>{state[id]=e.target.value;save();});
+});
+document.getElementById('startDate').addEventListener('change',e=>{state.startDate=e.target.value;save();updateDays();});
+
+function syncFields(){
+  document.getElementById('startDate').value=state.startDate||'';
+  document.getElementById('ci').value=state.ci||'';
+  document.getElementById('dd').value=state.dd||'';
+  document.getElementById('req').value=state.req||'';
+}
+function updateDays(){
+  if(!state.startDate)return;
+  const s=new Date(state.startDate),now=new Date();
+  const day=Math.floor((now-s)/864e5)+1;
+  const left=14-day+1;
+  document.getElementById('dayPill').textContent=`Sprint · den ${Math.max(1,day)}/14`;
+  const h=document.getElementById('hotPill');
+  h.textContent = left>0 ? `Do check-inu ${left} ${left===1?'den':(left<5?'dny':'dní')}` : `Check-in po termínu (${Math.abs(left)+1} dní)`;
+  const m=Math.floor((now-s)/864e5);
+  if(m>=30) h.textContent='Deep-dive analýza je na řadě';
+}
+
+function buildPrompt(){
+  const L=[];
+  L.push('TVÁ ROLE: tvůrčí mentor a stratég pro sociální sítě. Cíl: udržet konzistentní identitu, tvůrčí směr a disciplínu pro tvůrce Matěje. Primární výstup: krátká videa (Reels/TikTok/Shorts).','');
+  L.push('1. PILÍŘE — každý nápad musí spadat do jednoho:');
+  L.push('   - Edukace (hlavní fokus): předávání know-how, učení publika');
+  L.push('   - Kreativita & Skills: ukázka dovedností, proces tvorby');
+  L.push('   - Business / Prodej: osobní značka, sebevědomé ukázání expertízy');
+  L.push('   - Člověk / Osobnost: autenticita, zákulisí, myšlenky bez filtru','');
+  L.push('2. FORMÁT — 70 % evergreen / 30 % trendy. Struktura: Hook (0–3 s) → Retence (změna každé 2–3 s) → CTA.','');
+  L.push('3. WORKFLOW „Mates video“: 1) z hlavy na papír 2) jasný cíl 3) video scénář 4) akce.','');
+  L.push('4. CYKLY: 14denní sprinty (check-in, v každém MUSÍ být výstup z komfortní zóny) + 30denní deep-dive nad analytikou.','');
+  L.push('--- AKTUÁLNÍ STAV SPRINTU (start '+(state.startDate||'—')+') ---');
+  state.slots.forEach((s,i)=>{
+    L.push(`${String(i+1).padStart(2,'0')} [${s.pillar} · ${s.type}]${s.disc?' [NEKOMFORTNÍ ZÓNA]':''}${s.done?' [natočeno]':''}`);
+    if(s.idea)L.push('    Myšlenka: '+s.idea);
+    if(s.goal)L.push('    Cíl: '+s.goal);
+    if(s.hook)L.push('    Hook: '+s.hook);
+    if(s.cta)L.push('    CTA: '+s.cta);
+  });
+  if(state.ci)L.push('','Check-in: '+state.ci);
+  if(state.dd)L.push('Deep-dive: '+state.dd);
+  L.push('','--- TENTO MĚSÍC POTŘEBUJI ---',state.req||'(doplň)');
+  return L.join('\n');
+}
+document.getElementById('copyBtn').onclick=async e=>{
+  try{await navigator.clipboard.writeText(buildPrompt());e.target.textContent='Zkopírováno ✓';}
+  catch(err){e.target.textContent='Kopírování nevyšlo — použij Stáhnout';}
+  setTimeout(()=>e.target.textContent='Zkopírovat celý prompt',1600);
+};
+document.getElementById('exportBtn').onclick=()=>{
+  const blob=new Blob([buildPrompt()],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='matej-sprint-'+(state.startDate||'')+'.txt';
+  a.click();URL.revokeObjectURL(a.href);
+};
+
+syncFields();render();
+setInterval(updateDays,60000);
+</script>
+</body>
+</html>
